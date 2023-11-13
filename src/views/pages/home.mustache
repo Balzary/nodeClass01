@@ -1,0 +1,28 @@
+{{>partials/header}}
+
+    <h1>Aqui vai meu título</h1> 
+
+    <p>
+        Opa, {{user.name}} seja bem vindo!
+        {{#user.showAge}}
+        Você é maior de idade!
+        {{/user.showAge}}
+    </p>
+
+    <p>Olá meu nome é {{user.name}}, e eu tenho {{user.age}} anos, tudo bem?</p>
+
+    <p>oi aqui é um parágrafo</p>   
+
+    <ul>
+        {{#produtos}}
+            <li>{{titulo}} - R$ {{preco}}</li>
+        {{/produtos}}
+    </ul>
+
+    <hr>
+
+    {{#frases}}
+        <li>{{.}}</li>
+    {{/frases}}
+
+{{>partials/footer}}

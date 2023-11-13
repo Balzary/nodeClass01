@@ -15,6 +15,8 @@ server.set('views', path.join(__dirname, 'views'))
 server.engine('mustache', mustache())
 //configurando caminho da pasta public
 server.use(express.static(path.join(__dirname, '../public')))
+//configurando o POST
+server.use(express.urlencoded({extended: true}))
 
 server.use(mainRoutes)
 

@@ -1,0 +1,33 @@
+{{>partials/header}}
+
+<h3> Qual o seu nome? </h3>
+<form method="GET">
+    <label for="fname">Primeiro Nome:</label><br>
+    <input type="text" id="fname" name="nome" placeholder="Digite o seu nome"/>
+    <br>
+    <label for="fage">Idade:</label><br>
+    <input type="text" id="fage" name="idade" placeholder="Digite a sua idade"/>
+    <br>
+    <label for="fphonenumber">Telefone para contato:</label><br>
+    <input type="text" id="fphonenumber" name="telefone" placeholder="Digite o seu telefone"/>
+    <br>
+    <label for="fadress">Endereço:</label><br>
+    <input type="text" id="fadress" name="endereco" placeholder="Digite o seu endereço"/>
+    <br>
+    <input type="submit" value="Enviar"/>
+</form>
+
+{{#nome}}
+    Oi {{nome}}, tudo bem? <br>
+{{/nome}}
+{{#idade}}
+    você tem {{idade}} anos <br>
+{{/idade}}
+{{#telefone}}
+    telefone pra contato é {{telefone}} <br>
+{{/telefone}}
+{{#endereco}}
+    residente do endereço {{endereco}} <br>
+{{/endereco}}
+
+{{>partials/footer}}
