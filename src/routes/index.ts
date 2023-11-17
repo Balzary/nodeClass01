@@ -1,91 +1,23 @@
 import {Router, Request, Response} from 'express'
-
+import * as HomeController from '../controllers/homeController'
+import * as InfoController from '../controllers/infoController'
+import * as UserController from '../controllers/userController'
+import * as NewsController from '../controllers/newsControllers'
 const router = Router()
 
 //criando a primeira rota 
-router.get("/", (req:Request,res:Response) => {
-
-    let user = {
-        name: 'Guilherme',
-        age: 29,
-        showAge: false
-    }
-
-    if (user.age >= 18) {
-        user.showAge = true
-    } 
-
-    //let user: string = 'Guilherme' 
-    res.render('pages/home', {
-        user,
-        produtos: [
-            {titulo: 'Produto X', preco: 200},
-            {titulo: 'Produto Y', preco: 500},
-            {titulo: 'Produto Z', preco: 450}
-        ],
-        frases: [
-            'frases do dia 1',
-            'frases do dia 2',
-            'frases do dia 3'
-        ]         
-    })
-})
-
-router.get("/contato", (req:Request, res:Response) =>{
-    res.render('pages/contato')
-})
-
-router.get("/sobre", (req:Request, res:Response) =>{
-    res.render('pages/sobre')
-})
-
-router.get("/nome", (req:Request, res:Response) =>{
-    let nome: string = req.query.nome as string
-    res.render('pages/nome', {
-        nome
-    })
-})
-router.get("/cadastro", (req:Request, res:Response) =>{
-    let nome: string = req.query.nome as string
-    let idade: number = parseInt(req.query.idade as string)
-    let telefone: string = req.query.telefone as string
-    let endereco: string = req.query.endereco as string
-
-    res.render('pages/cadastro', {
-        nome,
-        idade,
-        telefone,
-        endereco
-    })
-})
+router.get("/", HomeController.home)
+router.get("/contato", InfoController.contato)
+router.get("/sobre", InfoController.sobre)
+router.get("/nome", UserController.nome)
+router.get("/cadastro", UserController.cadastro)
 //rota estática 
-router.get("/noticia/titulo-da-noticia", (req:Request, res:Response) =>{
-    res.send("Notícia aparecendo na tela")
-})
-
+router.get("/noticia/titulo-da-noticia", NewsController.noticia)
 //rota dinamica 
-router.get("/noticia/:slug", (req:Request, res:Response) =>{
-    let slug: string = req.params.slug
-    res.send(`Notícia ${slug}`)
-})
-
-router.get("/idade", (req:Request, res:Response) =>{
-    res.render('pages/idade')
-})
-
-router.post("/idade", (req:Request, res:Response) =>{
-    let idade: number = (new Date()).getFullYear() - parseInt(req.body.idade as string)
-    res.render('pages/idade', {idade})
-})
-
-router.get('/login',(req:Request,res:Response) =>{
-    res.render("pages/login")
-})
-
-router.post('/login',(req:Request,res:Response) =>{
-    let loginSuccess: boolean = true
-    let loginMessage: string = 'Logado com sucesso' 
-    res.render("pages/login", {loginMessage, loginSuccess})
-})
+router.get("/noticia/:slug", NewsController.noticia)
+router.get("/idade", UserController.idade)
+router.post("/idade", UserController.idadeResultado)
+router.get('/login', UserController.login)
+router.post('/login',UserController.loginResultado)
 
 export default router
