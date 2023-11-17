@@ -73,19 +73,19 @@ router.get("/idade", (req:Request, res:Response) =>{
     res.render('pages/idade')
 })
 
-// router.post("/idade", (req:Request, res:Response) =>{
-//     let idade: number = (new Date()).getFullYear() - parseInt(req.body.idade as string)
-//     res.render('pages/idade', {
-//         idade
-//     })
-// })
-
-router.post('/idade',(req:Request,res:Response)=>{
-
-    let idade: number = new Date().getFullYear() - parseInt(req.body.idade as string)    
-    console.log(idade)
-    res.render("pages/idade", {idade})
+router.post("/idade", (req:Request, res:Response) =>{
+    let idade: number = (new Date()).getFullYear() - parseInt(req.body.idade as string)
+    res.render('pages/idade', {idade})
 })
 
+router.get('/login',(req:Request,res:Response) =>{
+    res.render("pages/login")
+})
+
+router.post('/login',(req:Request,res:Response) =>{
+    let loginSuccess: boolean = true
+    let loginMessage: string = 'Logado com sucesso' 
+    res.render("pages/login", {loginMessage, loginSuccess})
+})
 
 export default router
